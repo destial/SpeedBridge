@@ -1,6 +1,7 @@
 package me.tofpu.speedbridge.lobby.leaderboard;
 
 import com.google.common.collect.Lists;
+import me.tofpu.speedbridge.data.file.config.Config;
 import me.tofpu.speedbridge.lobby.leaderboard.data.BoardUser;
 import me.tofpu.speedbridge.user.User;
 import me.tofpu.speedbridge.user.properties.timer.Timer;
@@ -13,20 +14,14 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 public final class Leaderboard {
     private final List<BoardUser> mainLeaderboard;
     private final List<BoardUser> cacheLeaderboard;
 
-    private final int limitSize;
     private BukkitTask update;
 
     public Leaderboard(final int limitSize) {
-        this.limitSize = limitSize;
-
         mainLeaderboard = new ArrayList<>(limitSize);
         cacheLeaderboard = new ArrayList<>(limitSize);
     }
@@ -40,7 +35,7 @@ public final class Leaderboard {
     }
 
     public void cancel() {
-        this.update.cancel();
+        update.cancel();
     }
 
     public void check(final User user) {
@@ -116,8 +111,14 @@ public final class Leaderboard {
         builder.append("&eLeaderboard");
 
         int length = 1;
+        String format = Config.get("settings").getConfiguration().getString("leaderboard-format", "%player% &a(%time%)");
         for (final BoardUser user : getMainLeaderboard()) {
-            builder.append("\n").append("&e").append(length).append(". ").append(user.getName()).append(" &a(").append(user.getScore()).append(")");
+            String text = format.replace("%player%", user.getName())
+                    .replace("%time%", user.getScore() + "");
+            if (Util.isPlaceholderHooked) {
+                text = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(Bukkit.getOfflinePlayer(user.getUuid()), text);
+            }
+            builder.append("\n").append("&e").append(length).append(". ").append(text);
             length++;
         }
 
@@ -127,7 +128,14 @@ public final class Leaderboard {
     public String parseAndGet(final int slot){
         if (getMainLeaderboard().size() <= slot) return "N/A";
         final BoardUser user = getMainLeaderboard().get(slot);
-        return user == null ? "N/A" : Util.colorize(user.getName() + " &a(" + user.getScore() + ")");
+        if (user == null) return "N/A";
+        String format = Config.get("settings").getConfiguration().getString("leaderboard-format", "%player% &a(%time%)")
+                .replace("%player%", user.getName())
+                .replace("%time%", user.getScore() + "");
+        if (Util.isPlaceholderHooked) {
+            format = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(Bukkit.getOfflinePlayer(user.getUuid()), format);
+        }
+        return Util.colorize(format);
     }
 
     public List<BoardUser> getMainLeaderboard() {

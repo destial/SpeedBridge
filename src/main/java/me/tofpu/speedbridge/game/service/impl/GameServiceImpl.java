@@ -43,7 +43,6 @@ public class GameServiceImpl implements GameService {
 
     public GameServiceImpl(final Plugin plugin, final IslandService islandService, final UserService userService, final LobbyService lobbyService) {
         this.plugin = plugin;
-
         this.islandService = islandService;
         this.userService = userService;
         this.lobbyService = lobbyService;

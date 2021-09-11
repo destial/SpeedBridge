@@ -16,8 +16,8 @@ public final class UserImpl extends UserProperties implements User {
     public UserImpl(final UUID uuid, final UserProperties userProperties) {
         super();
         this.uuid = uuid;
-        this.setIslandSlot(userProperties.getIslandSlot());
-        this.setTimer(userProperties.getTimer());
+        setIslandSlot(userProperties.getIslandSlot());
+        setTimer(userProperties.getTimer());
     }
 
     @Override

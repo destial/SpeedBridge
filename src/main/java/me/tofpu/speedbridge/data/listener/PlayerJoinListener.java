@@ -6,6 +6,7 @@ import me.tofpu.speedbridge.lobby.service.LobbyService;
 import me.tofpu.speedbridge.util.Util;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -18,13 +19,12 @@ public class PlayerJoinListener implements Listener {
         this.dataManager = dataManager;
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     private void onPlayerJoin(final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         if (lobbyService.hasLobbyLocation()) player.teleport(lobbyService.getLobbyLocation());
-        else if (player.isOp()) {
-            Util.message(player, Path.MESSAGES_NO_LOBBY);
-        }
+
+        else if (player.isOp()) Util.message(player, Path.MESSAGES_NO_LOBBY);
 
         lobbyService.getLeaderboard().check(dataManager.loadUser(event.getPlayer().getUniqueId()));
     }

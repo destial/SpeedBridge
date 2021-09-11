@@ -1499,13 +1499,13 @@ public enum XMaterial {
         this.legacy = legacy;
 
         Material mat = null;
-        if ((!Data.ISFLAT && this.isDuplicated()) || (mat = Material.getMaterial(this.name())) == null) {
+        if ((!Data.ISFLAT && isDuplicated()) || (mat = Material.getMaterial(name())) == null) {
             for (int i = legacy.length - 1; i >= 0; i--) {
                 mat = Material.getMaterial(legacy[i]);
                 if (mat != null) break;
             }
         }
-        this.material = mat;
+        material = mat;
     }
 
     XMaterial(String... legacy) { this(0, legacy); }
@@ -1887,9 +1887,9 @@ public enum XMaterial {
      * @return true if one of the given material names is similar to the base material.
      * @since 3.1.1
      */
-    public boolean isOneOf (Collection<String> materials) {
+    public boolean isOneOf(Collection<String> materials) {
         if (materials == null || materials.isEmpty()) return false;
-        String name = this.name();
+        String name = name();
 
         for (String comp : materials) {
             String checker = comp.toUpperCase(Locale.ENGLISH);
@@ -2043,7 +2043,7 @@ public enum XMaterial {
     public boolean isSimilar(ItemStack item) {
         Objects.requireNonNull(item, "Cannot compare with null ItemStack");
         if (item.getType() != this.parseMaterial()) return false;
-        return Data.ISFLAT || item.getDurability() == this.data || item.getType().getMaxDurability() > 0;
+        return Data.ISFLAT || item.getDurability() == data || item.getType().getMaxDurability() > 0;
     }
 
     /**
@@ -2057,7 +2057,7 @@ public enum XMaterial {
      * @since 2.0.0
      */
     public boolean isSupported() {
-        return this.material != null;
+        return material != null;
     }
 
     /**

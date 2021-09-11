@@ -12,8 +12,8 @@ public class Timer {
 
     public Timer(final int slot) {
         this.slot = slot;
-        this.start = System.currentTimeMillis();
-        this.result = 0;
+        start = System.currentTimeMillis();
+        result = 0;
     }
 
     public Timer(final int slot, final double result) {
@@ -26,7 +26,7 @@ public class Timer {
     }
 
     public void complete() {
-        this.result = Util.toSeconds(start, end);
+        result = Util.toSeconds(start, end);
     }
 
     public int getSlot() {

@@ -48,8 +48,8 @@ public final class BoardUser implements Comparable<BoardUser> {
 
     @Override
     public int compareTo(@NotNull BoardUser o) {
-        if (getScore().equals(o.getScore())) return 0; // THIS EQUAL THAN O
-        else if (getScore() > o.getScore()) return 1; // THIS HIGHER THAN O
+        if (score.equals(o.getScore())) return 0; // THIS EQUAL THAN O
+        else if (score > o.getScore()) return 1; // THIS HIGHER THAN O
         return -1; // THIS LOWER THAN O
     }
 
@@ -86,7 +86,7 @@ public final class BoardUser implements Comparable<BoardUser> {
         }
 
         public BoardUser build() {
-            return new BoardUser(getName(), getUuid(), getResult());
+            return new BoardUser(name, uuid, result);
         }
     }
 }

@@ -38,13 +38,13 @@ public final class SpeedBridge extends JavaPlugin {
     private final Game game;
 
     public SpeedBridge() {
-        this.game = new Game(this, getDataFolder());
+        game = new Game(this, getDataFolder());
 
-        final DataManager dataManager = getGame().getDataManager();
-        final UserService userService = getGame().getUserService();
-        final IslandService islandService = getGame().getIslandService();
-        final GameService gameService = getGame().getGameService();
-        final LobbyService lobbyService = getGame().getLobbyService();
+        final DataManager dataManager = game.getDataManager();
+        final UserService userService = game.getUserService();
+        final IslandService islandService = game.getIslandService();
+        final GameService gameService = game.getGameService();
+        final LobbyService lobbyService = game.getLobbyService();
 
         this.listeners = Arrays.asList(
                 new PlayerJoinListener(lobbyService, dataManager),
@@ -66,9 +66,9 @@ public final class SpeedBridge extends JavaPlugin {
             }
         });
 
-        final DataManager dataManager = getGame().getDataManager();
         Config.initialize(this);
 
+        final DataManager dataManager = game.getDataManager();
         dataManager.initialize();
         ModeManager.getModeManager().initialize();
 
@@ -77,29 +77,26 @@ public final class SpeedBridge extends JavaPlugin {
 
         initializePlaceholderApi();
         initializeListeners();
-        new CommandHandler(getGame(), this);
-
+        new CommandHandler(game, this);
         new Metrics(this, 12679);
 
         // RELOAD BUG FIX
         Bukkit.getOnlinePlayers().forEach(player -> dataManager.loadUser(player.getUniqueId()));
 
-        getGame().getLobbyService().getLeaderboard().initialize(this);
+        game.getLobbyService().getLeaderboard().initialize(this);
     }
 
     @Override
     public void onDisable() {
-        final DataManager dataManager = this.game.getDataManager();
-        dataManager.save();
-
-        getGame().getLobbyService().getLeaderboard().cancel();
+        game.getDataManager().save();
+        game.getLobbyService().getLeaderboard().cancel();
     }
 
     public void initializePlaceholderApi() {
         if (DependencyRegister.get("PlaceholderAPI").getDependency() == null) return;
         Util.isPlaceholderHooked = true;
         getLogger().info("Hooked into PlaceholderAPI");
-        new BridgeExpansion(getDescription(), getGame().getUserService(), getGame().getGameService(), getGame().getLobbyService()).register();
+        new BridgeExpansion(getDescription(), game.getUserService(), game.getGameService(), game.getLobbyService()).register();
     }
 
     public void initializeListeners() {

@@ -38,7 +38,7 @@ public enum Path {
     MESSAGES_NO_SETUP("messages.no-setup"),
     MESSAGES_NO_COMPLETE("messages.no-complete");
     private final String path;
-    private OutputType type;
+    private final OutputType type;
     private String defaultMessage;
 
     Path(String path) {
@@ -47,8 +47,8 @@ public enum Path {
 
     Path(String path, String defaultMessage) {
         this.path = path;
-        this.type = OutputType.STRING;
         this.defaultMessage = defaultMessage;
+        type = OutputType.STRING;
     }
 
     Path(String path, OutputType type) {

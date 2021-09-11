@@ -13,7 +13,7 @@ public class ModeManager {
     private final List<Mode> modes;
 
     public ModeManager() {
-        this.modes = new ArrayList<>();
+        modes = new ArrayList<>();
     }
 
     public static ModeManager getModeManager() {

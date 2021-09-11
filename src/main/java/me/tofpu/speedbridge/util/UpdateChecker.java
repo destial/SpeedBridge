@@ -189,7 +189,7 @@ public final class UpdateChecker {
      * A functional interface to compare two version Strings with similar version schemes.
      */
     @FunctionalInterface
-    public static interface VersionScheme {
+    public interface VersionScheme {
 
         /**
          * Compare two versions and return the higher of the two. If null is returned, it is assumed
@@ -200,14 +200,14 @@ public final class UpdateChecker {
          *
          * @return the greater of the two versions. null if unsupported version schemes
          */
-        public String compareVersions(String first, String second);
+        String compareVersions(String first, String second);
 
     }
 
     /**
      * A constant reason for the result of {@link UpdateResult}.
      */
-    public static enum UpdateReason {
+    public enum UpdateReason {
 
         /**
          * A new update is available for download on SpigotMC.
@@ -273,7 +273,7 @@ public final class UpdateChecker {
         private UpdateResult(UpdateReason reason) {
             Preconditions.checkArgument(reason != UpdateReason.NEW_UPDATE, "Reasons that require updates must also provide the latest version String");
             this.reason = reason;
-            this.newestVersion = plugin.getDescription().getVersion();
+            newestVersion = plugin.getDescription().getVersion();
         }
 
         /**

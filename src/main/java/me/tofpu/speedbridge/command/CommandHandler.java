@@ -15,19 +15,19 @@ public class CommandHandler {
     private final BukkitCommandManager commandManager;
 
     public CommandHandler(Game game, final SpeedBridge plugin) {
-        this.commandManager = new BukkitCommandManager(plugin);
+        commandManager = new BukkitCommandManager(plugin);
 
         // contexts
-        this.commandManager.getCommandContexts().registerContext(Mode.class, (string) -> {
+        commandManager.getCommandContexts().registerContext(Mode.class, (string) -> {
             final String input = string.popFirstArg();
 
             return ModeManager.getModeManager().get(input);
         });
 
         // completions
-        this.commandManager.getCommandCompletions().registerCompletion("modes", context -> Util.toString(ModeManager.getModeManager().getModes()));
-        this.commandManager.getCommandCompletions().registerCompletion("availableIslands", context -> Util.toString(game.getIslandService().getAvailableIslands()));
-        this.commandManager.getCommandCompletions().registerCompletion("setupStage", context -> Util.toString(SetupStage.values()));
+        commandManager.getCommandCompletions().registerCompletion("modes", context -> Util.toString(ModeManager.getModeManager().getModes()));
+        commandManager.getCommandCompletions().registerCompletion("availableIslands", context -> Util.toString(game.getIslandService().getAvailableIslands()));
+        commandManager.getCommandCompletions().registerCompletion("setupStage", context -> Util.toString(SetupStage.values()));
 
         // registrations
         registerCommand(new MainCommand(game.getUserService(), game.getGameService(), game.getLobbyService()));
@@ -35,6 +35,6 @@ public class CommandHandler {
     }
 
     public void registerCommand(final BaseCommand command) {
-        this.commandManager.registerCommand(command);
+        commandManager.registerCommand(command);
     }
 }

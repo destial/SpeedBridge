@@ -26,15 +26,12 @@ public class Game {
     private final DataManager dataManager;
 
     public Game(final Plugin plugin, final File directory) {
-        this.islandService = new IslandServiceImpl();
-        this.userService = new UserServiceImpl();
-
-        this.lobbyService = new LobbyServiceImpl();
-
-        this.gameController = new GameController(islandService);
-        this.gameService = new GameServiceImpl(plugin, islandService, userService, lobbyService);
-
-        this.dataManager = new DataManager(directory, islandService, userService, lobbyService);
+        islandService = new IslandServiceImpl();
+        userService = new UserServiceImpl();
+        lobbyService = new LobbyServiceImpl();
+        gameController = new GameController(islandService);
+        gameService = new GameServiceImpl(plugin, islandService, userService, lobbyService);
+        dataManager = new DataManager(directory, islandService, userService, lobbyService);
     }
 
     public IslandService getIslandService() {

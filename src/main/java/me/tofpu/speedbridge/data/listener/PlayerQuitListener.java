@@ -16,7 +16,7 @@ public class PlayerQuitListener implements Listener {
     private final GameService gameService;
     private final DataManager dataManager;
 
-    public PlayerQuitListener(UserService userService, IslandService islandService, GameService gameService, DataManager dataManager) {
+    public PlayerQuitListener(final UserService userService, final IslandService islandService, final GameService gameService, final DataManager dataManager) {
         this.userService = userService;
         this.islandService = islandService;
         this.gameService = gameService;

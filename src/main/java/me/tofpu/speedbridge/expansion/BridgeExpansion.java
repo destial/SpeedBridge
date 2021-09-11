@@ -67,7 +67,7 @@ public class BridgeExpansion extends PlaceholderExpansion {
         final Timer timer;
         switch (type) {
             case ISLAND:
-                Integer slot = null;
+                Integer slot;
                 if (isNull || ((slot = user.getProperties().getIslandSlot()) == null)) return "Lobby";
                 return slot + "";
             case LIVE_TIMER:
@@ -79,7 +79,6 @@ public class BridgeExpansion extends PlaceholderExpansion {
             case LEADERBOARD:
                 if (args.length <= 1) return null;
                 final Leaderboard leaderboard = lobbyService.getLeaderboard();
-                System.out.println(Arrays.toString(args));
                 final Integer integer = Util.parseInt(args[1]);
                 return integer == null ? "Provide a number!" : integer == 0 ? "Only number 1 or above is allowed!" : leaderboard.parseAndGet(integer - 1);
             default:

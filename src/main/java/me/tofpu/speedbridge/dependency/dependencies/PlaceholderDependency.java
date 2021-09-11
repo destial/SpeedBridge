@@ -14,7 +14,7 @@ public class PlaceholderDependency implements Dependency<PlaceholderAPIPlugin> {
 
     @Override
     public void hook(JavaPlugin javaPlugin) {
-        this.placeholderAPI = PlaceholderAPIPlugin.getInstance();
+        placeholderAPI = PlaceholderAPIPlugin.getInstance();
     }
 
     @Override

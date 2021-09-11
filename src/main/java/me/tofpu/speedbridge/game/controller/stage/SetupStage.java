@@ -5,7 +5,7 @@ public enum SetupStage {
 
     public static SetupStage getMatch(final String string) {
         for (final SetupStage stage : SetupStage.values()) {
-            if (stage.name().equalsIgnoreCase(string.toUpperCase().replace("-", "_"))) return stage;
+            if (stage.name().equalsIgnoreCase(string.replace("-", "_"))) return stage;
         }
         return null;
     }

@@ -11,12 +11,12 @@ public class Cuboid {
     private final int zMax;
 
     public Cuboid(final Location point1, final Location point2) {
-        this.xMin = Math.min(point1.getBlockX(), point2.getBlockX());
-        this.xMax = Math.max(point1.getBlockX(), point2.getBlockX());
-        this.yMin = Math.min(point1.getBlockY(), point2.getBlockY());
-        this.yMax = Math.max(point1.getBlockY(), point2.getBlockY());
-        this.zMin = Math.min(point1.getBlockZ(), point2.getBlockZ());
-        this.zMax = Math.max(point1.getBlockZ(), point2.getBlockZ());
+        xMin = Math.min(point1.getBlockX(), point2.getBlockX());
+        xMax = Math.max(point1.getBlockX(), point2.getBlockX());
+        yMin = Math.min(point1.getBlockY(), point2.getBlockY());
+        yMax = Math.max(point1.getBlockY(), point2.getBlockY());
+        zMin = Math.min(point1.getBlockZ(), point2.getBlockZ());
+        zMax = Math.max(point1.getBlockZ(), point2.getBlockZ());
     }
 
     public static Cuboid of(final Location point1, final Location point2) {
@@ -24,7 +24,7 @@ public class Cuboid {
     }
 
     public boolean isIn(final Location loc) {
-        return loc.getBlockX() >= this.xMin && loc.getBlockX() <= this.xMax && loc.getBlockY() >= this.yMin && loc.getBlockY() <= this.yMax && loc
-                .getBlockZ() >= this.zMin && loc.getBlockZ() <= this.zMax;
+        return loc.getBlockX() >= xMin && loc.getBlockX() <= xMax && loc.getBlockY() >= yMin && loc.getBlockY() <= yMax && loc
+                .getBlockZ() >= zMin && loc.getBlockZ() <= zMax;
     }
 }

@@ -69,7 +69,7 @@ public class IslandAdapter extends TypeAdapter<Island> {
 
         final IslandProperties properties = island.getProperties();
         while (in.hasNext()) {
-            final String index = in.nextName();
+            in.nextName();
             in.beginArray();
             in.beginObject();
 

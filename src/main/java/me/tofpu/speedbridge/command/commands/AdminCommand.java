@@ -135,6 +135,7 @@ public class AdminCommand extends BridgeBaseCommand {
                 break;
             case INVALID_LOBBY:
                 path = Path.MESSAGES_NO_COMPLETE;
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + result);
         }

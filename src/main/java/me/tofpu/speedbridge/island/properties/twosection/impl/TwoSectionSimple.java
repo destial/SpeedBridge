@@ -4,21 +4,18 @@ import me.tofpu.speedbridge.island.properties.twosection.TwoSection;
 import org.bukkit.Location;
 
 public class TwoSectionSimple implements TwoSection {
-    private String identifier = "";
+    private final String identifier;
 
     private Location sectionA;
     private Location sectionB;
 
     public TwoSectionSimple() {
+        identifier = "section";
     }
 
     @Override
     public String getIdentifier() {
         return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 
     @Override

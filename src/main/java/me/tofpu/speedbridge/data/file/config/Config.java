@@ -27,7 +27,7 @@ public class Config {
     public Config(final String identifier, final FileConfig fileConfig) {
         this.identifier = identifier;
         this.fileConfig = fileConfig;
-        this.configuration = fileConfig.getConfiguration();
+        configuration = fileConfig.getConfiguration();
         FILE_TYPES.add(this);
     }
 

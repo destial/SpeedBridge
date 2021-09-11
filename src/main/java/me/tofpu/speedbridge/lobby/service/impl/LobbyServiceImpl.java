@@ -19,7 +19,7 @@ public class LobbyServiceImpl implements LobbyService {
     private Location location;
 
     public LobbyServiceImpl() {
-        this.leaderboard = new Leaderboard(10);
+        leaderboard = new Leaderboard(10);
     }
 
     @Override

@@ -37,16 +37,14 @@ public class DataManager {
     private final UserService userService;
     private final LobbyService lobbyService;
 
-    private final File[] files;
+    private final File[] files = new File[5];
 
     public DataManager(final File parentDirectory, final IslandService islandService, final UserService userService, final LobbyService lobbyService) {
-        this.files = new File[5];
-
-        this.files[0] = parentDirectory;
-        this.files[1] = new File(parentDirectory, "islands");
-        this.files[2] = new File(parentDirectory, "users");
-        this.files[3] = new File(parentDirectory, "lobby.json");
-        this.files[4] = new File(parentDirectory, "leaderboard.json");
+        files[0] = parentDirectory;
+        files[1] = new File(parentDirectory, "islands");
+        files[2] = new File(parentDirectory, "users");
+        files[3] = new File(parentDirectory, "lobby.json");
+        files[4] = new File(parentDirectory, "leaderboard.json");
 
         this.islandService = islandService;
         this.userService = userService;

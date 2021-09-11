@@ -6,8 +6,7 @@ public class UserProperties {
     private Integer islandSlot;
     private Timer timer;
 
-    public UserProperties() {
-    }
+    public UserProperties() {}
 
     public UserProperties(final int islandSlot) {
         this.islandSlot = islandSlot;

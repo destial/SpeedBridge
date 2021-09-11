@@ -12,7 +12,6 @@ public class FileConfig {
 
     public FileConfig(final SpeedBridge plugin, final String identifier) {
         this.identifier = identifier;
-
         initialize(plugin, identifier);
     }
 
@@ -22,7 +21,7 @@ public class FileConfig {
 
         if (!settingsFile.exists()) plugin.saveResource(identifier + ".yml", false);
 
-        this.configuration = YamlConfiguration.loadConfiguration(settingsFile);
+        configuration = YamlConfiguration.loadConfiguration(settingsFile);
     }
 
     public String getIdentifier() {
